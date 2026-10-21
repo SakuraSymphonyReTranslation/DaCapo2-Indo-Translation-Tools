@@ -1,0 +1,42 @@
+[
+  {
+    "file": "BGI.gdb",
+    "bytes": 329363,
+    "sha256": "c5298e624be01dbb0cc45b24fb991fd3f70e4600bbbcda3110586a7b8fc3c9a8"
+  },
+  {
+    "file": "BijikTools-DC2-ChoiceFix.rar",
+    "bytes": 26561663,
+    "sha256": "5510ecb85502b1ad79d1564ed481f4223934df503b4cf810ee14e255d676f0fd"
+  },
+  {
+    "file": "data01000.arc",
+    "bytes": 16200826,
+    "sha256": "4ecf5a74e55fc30663cff1a5e94c9003c11010e44f75e4643f2f2a6658500818",
+    "signature": "PackFile",
+    "entries": 799,
+    "dsc_compressed_entries": 0
+  },
+  {
+    "file": "data01100.arc",
+    "bytes": 4002120,
+    "sha256": "03257058ab887e7956f2503422a2a47baa16bdc50b3f7612e4ce85b6b8ef8646",
+    "signature": "PackFile",
+    "entries": 799,
+    "dsc_compressed_entries": 799
+  },
+  {
+    "file": "system.arc",
+    "bytes": 60406,
+    "sha256": "0397295b9ff0cc9a56f915887e36ae1904e5ba5f0e663c7b9bbfc52a5105cce1",
+    "signature": "PackFile",
+    "entries": 4,
+    "dsc_compressed_entries": 0,
+    "entry_names": [
+      "ipl._bp",
+      "ipl._bp.bak",
+      "launcher._bp",
+      "VeraMoBd._ft"
+    ]
+  }
+]

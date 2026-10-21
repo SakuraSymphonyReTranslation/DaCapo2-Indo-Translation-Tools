@@ -1,0 +1,8 @@
+# Folder lokal hasil ekstraksi dan pengerjaan
+/BijikTools-DC2-ChoiceFix/
+/work/
+/UserData/
+*.tmp
+*.log
+Thumbs.db
+Desktop.ini
