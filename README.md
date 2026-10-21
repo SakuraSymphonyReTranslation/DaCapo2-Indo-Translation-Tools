@@ -41,7 +41,7 @@ DaCapo2 Indo Translation Tools/
 │   ├── DC2ChoiceSupport.dll
 │   └── ...
 └── work/                            # lokal: sumber dan hasil pengerjaan
-    ├── data01100.arc                 # cadangan sumber setelah langkah 3
+    ├── data01100.arc                 # cadangan sumber; juga disalin ke folder game
     ├── data01000/                    # skrip sumber hasil unpack
     ├── data01000_json/               # JSON untuk diterjemahkan
     ├── data01000res/                 # skrip hasil insert
@@ -54,7 +54,7 @@ Nama folder contoh menggunakan `E:\Games\DaCapo2\DaCapo2 Indo Translation Tools`
 work\data01000.arc (salinan sumber pada persiapan)
   → Unpack Archive → work\data01000
   → Extract Script → work\data01000_json
-  → rename arsip input menjadi work\data01100.arc
+  → rename arsip input menjadi work\data01100.arc; salin juga ke folder game
   → edit terjemahan
   → Insert Script  → work\data01000res
   → Pack ARC V1    → work\data01000.arc (hasil patch)
@@ -118,7 +118,7 @@ Pilih **Engine Target: `BGI / Ethornell`** selama unpack, extract, insert, dan p
 3. Klik **Gas Extract!**, lalu tunggu sampai proses selesai.
 4. Periksa JSON hasil ekspor. Parser yang diperbaiki menyertakan dialog serta pilihan DC2. Pada sumber yang disediakan, 217 entri pilihan terdapat dalam 63 dari 799 JSON.
 
-### Langkah 3: Rename arsip sumber menjadi `data01100.arc`
+### Langkah 3: Rename arsip sumber menjadi `data01100.arc` dan salin ke folder game
 
 Setelah unpack dan ekstraksi JSON selesai, ubah nama arsip input **`work\data01000.arc` menjadi `work\data01100.arc`**. Simpan berkas tersebut sebagai cadangan sumber saat membuat arsip hasil patch. Cadangan ini berasal dari arsip yang Anda pilih pada persiapan; mengganti nama berkas tidak mengubah isinya.
 
@@ -132,6 +132,14 @@ Rename-Item -LiteralPath '.\work\data01000.arc' -NewName 'data01100.arc'
 ```
 
 Lakukan rename pada salinan di `work`. Folder skrip tetap `data01000`, dan folder JSON tetap `data01000_json`. Nama `work\data01000.arc` sekarang tersedia untuk hasil patch. Jika cadangan bernama `work\data01100.arc` sudah ada, simpan cadangan tersebut sebelum menyiapkan pengerjaan baru.
+
+**Salin juga `work\data01100.arc` ke folder instalasi game yang memuat `dacapo2.exe`.** Pertahankan salinan di `work` sebagai cadangan sumber. Sebelum menimpa berkas di instalasi, tutup game dan simpan berkas lama ke folder cadangan terpisah.
+
+```text
+work\data01100.arc → <folder game>\data01100.arc
+```
+
+Game membutuhkan **`data01100.arc` sebagai arsip sumber dan `data01000.arc` sebagai arsip hasil patch** di folder instalasi yang sama. Setelah hasil patch dibuat pada langkah 6, salin `work\data01000.arc` ke folder game tersebut. **`system.arc` dari repository GitHub ini juga harus disalin untuk menimpa `system.arc` di folder game**, sesuai bagian pemasangan di bawah.
 
 ### Langkah 4: Terjemahkan JSON
 
@@ -177,17 +185,18 @@ Arsip sumber yang disediakan memakai kompresi DSC pada semua skrip. Hasil pack t
 ## Pemasangan ke game
 
 1. Tutup game. Cadangkan `data01000.arc`, `data01100.arc`, dan `system.arc` dari instalasi ke folder cadangan terpisah.
-2. Salin **`work\data01000.arc` hasil langkah 6** ke folder game yang memuat `dacapo2.exe`.
-3. Pertahankan arsip sumber `data01100.arc` di instalasi game.
-4. Salin **`system.arc` dari root repository** ke folder game bila menggunakan berkas sistem yang disediakan bersama patch ini. Berkas tersebut langsung digunakan dan tidak perlu dipack ulang dalam alur skenario ini.
-5. Jalankan game dan periksa pemuatan skenario, nama pembicara, dialog, pilihan, pergantian baris, serta save/load.
+2. Salin **`work\data01100.arc` dari langkah 3** ke folder game yang memuat `dacapo2.exe`, lalu timpa `data01100.arc` lama bila ada. Pertahankan salinan cadangannya di `work`.
+3. Salin **`work\data01000.arc` hasil langkah 6** ke folder game yang sama, lalu timpa `data01000.arc` lama bila ada. **Kedua arsip, `data01100.arc` dan `data01000.arc`, harus ada agar game dapat berjalan.**
+4. Salin **`system.arc` dari root repository GitHub ini** ke folder game tersebut dan **timpa `system.arc` lama**. Berkas ini wajib dipasang bersama patch; langsung gunakan berkas yang disediakan tanpa mengedit atau mempack ulang.
+5. Pastikan ketiga berkas tersedia di sebelah `dacapo2.exe`, lalu jalankan game dan periksa pemuatan skenario, nama pembicara, dialog, pilihan, pergantian baris, serta save/load.
 
 ```text
+work\data01100.arc → <folder game>\data01100.arc
 work\data01000.arc → <folder game>\data01000.arc
-system.arc         → <folder game>\system.arc
+system.arc         → <folder game>\system.arc (timpa berkas lama)
 ```
 
-Untuk memakai arsip patch/kerja yang sudah tersedia, salin `data01000.arc` dari root folder sebagai sumber pemasangan pada langkah 2. Kelengkapan terjemahan dan tampilan pilihan pada arsip tersebut belum diaudit.
+Untuk memakai arsip patch/kerja yang sudah tersedia, salin `data01100.arc`, `data01000.arc`, dan `system.arc` dari root repository ke folder game, lalu timpa berkas bernama sama setelah membuat cadangan. Kelengkapan terjemahan dan tampilan pilihan pada arsip patch tersebut belum diaudit.
 
 `BGI.gdb` disimpan sebagai bahan pendukung dan tidak digunakan dalam enam langkah konversi skenario. Folder hasil ekstraksi Bijik dan `work` bersifat lokal; `.gitignore` mengecualikannya dari Git.
 
